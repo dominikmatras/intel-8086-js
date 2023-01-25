@@ -5,9 +5,13 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+
 		<link rel="stylesheet" href="css/style.css" />
 
-		<title>Intel 8086 Simulator</title>
+		<title>Intel 8086</title>
 	</head>
 	<body>
 		<header class="heading-box">
@@ -53,40 +57,40 @@
 
 			<h2 class="cell-heading">Komórki pamięci operacyjnej RAM</h2>
 			<div class="cells-box-wrapper">
-				<input type="text" maxlength="4" minlength="4" data-cell="1" class="cell-input" placeholder="Podaj wartość komórki.." />
+				<input type="text" maxlength="4" minlength="4" data-cell="1" class="cell-input" placeholder="Podaj wartość..." />
 				<select name="RAM" id="ramcells" class="cell-list">
 					<option value="none" selected>Wybierz komórkę pamięci RAM</option>
 				</select>
-				<button class="cell-submit">Wprowadź</button>
+				<button class="cellbtn btn">Wprowadź</button>
 			</div>
 		</div>
 
 		<div class="operation-box-container">
-			<h2 class="select-operation-heading">Na jakich rejestrach/komórkach chcesz wykonać operację</h2>
+			<!-- <h2 class="select-operation-heading">Na jakich rejestrach/komórkach chcesz wykonać operację</h2>
 			<div class="select-operation-box-wrapper">
-				<button>Rejestr - Rejestr</button>
-				<button>Rejestr - Komórka RAM</button>
-				<button>Komórka RAM - Rejestr</button>
-				<button>Komórka RAM - Komórka RAM</button>
-			</div>
+				<button class="onlyregbtn btn">Rejestr - Rejestr</button>
+				<button class="regcelbtn btn">Rejestr - Komórka RAM</button>
+				<button class="celregbtn btn">Komórka RAM - Rejestr</button>
+				<button class="onlycelbtn btn">Komórka RAM - Komórka RAM</button>
+			</div> -->
 
-			<h2 class="operation-heading">Operacja:</h2>
+			<h2 class="operation-heading">Operacje</h2>
 			<div class="operation-box-wrapper">
-				<button class="movbtn">MOV</button>
-				<button class="xchgbtn">XCHG</button>
-				<button class="notbtn">NOT</button>
-				<button class="incbtn">INC</button>
-				<button class="decbtn">DEC</button>
-				<button class="andbtn">AND</button>
-				<button class="orbtn">OR</button>
-				<button class="xorbtn">XOR</button>
-				<button class="addbtn">ADD</button>
-				<button class="subbtn">SUB</button>
+				<button class="movbtn btn">MOV</button>
+				<button class="xchgbtn btn">XCHG</button>
+				<button class="notbtn btn">NOT</button>
+				<button class="incbtn btn">INC</button>
+				<button class="decbtn btn">DEC</button>
+				<button class="andbtn btn">AND</button>
+				<button class="orbtn btn">OR</button>
+				<button class="xorbtn btn">XOR</button>
+				<button class="addbtn btn">ADD</button>
+				<button class="subbtn btn">SUB</button>
 			</div>
 
-			<div class="action-box-wrapper">
+			<div class="action-box-wrapper action-hiden">
 				<div class="action-content"></div>
-				<button class="actionbtn">Zatwierdź</button>
+				<button class="actionbtn btn">Zatwierdź</button>
 			</div>
 		</div>
 
