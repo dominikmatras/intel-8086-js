@@ -1,14 +1,14 @@
 // Zmienne globalne
 let registyArray = []
-const cellArray = []
+let cellArray = []
 
 // Pobieranie rejestrów
 const registyWrapper = document.querySelector('.registy-box-wrapper')
 const registyInputs = document.querySelectorAll('.registy-input')
 
 // Pobieranie komórek RAM
-const cellInput = document.querySelector('.cell-input')
-const cellList = document.querySelector('.cell-list')
+const cellInput = document.querySelector('.cell-value')
+const cellName = document.querySelector('.cell-name')
 const cellInputBtn = document.querySelector('.cellbtn')
 
 // Funkcja wpisująca do tablicy wartości rejstrów
@@ -34,11 +34,23 @@ const fillingCells = () => {
 	}
 }
 
+// Wprowadznie danych do komórek
+const inputToCell = () => {
+	const cellInputValue = cellInput.value
+	const cellInputName = cellName.value.toUpperCase()
+	cellArray.forEach(cell => {
+		if (cell.cellName === cellInputName) {
+			cell.cellValue = cellInputValue
+			console.log(cellArray)
+		}
+	})
+}
+
 // Nasłuchiwanie na wciśnięcie przysisku
 registyInputs.forEach(div => {
 	div.firstElementChild.addEventListener('keyup', pushToArray)
 })
 
-fillingCells()
+cellInputBtn.addEventListener('click', inputToCell)
 
-console.log(cellArray)
+fillingCells()
