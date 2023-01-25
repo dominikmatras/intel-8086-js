@@ -1,6 +1,7 @@
 // Zmienne globalne
 let registyArray = []
 let cellArray = []
+let regEx = /^[0-9a-fA-F]+$/
 
 // Pobieranie rejestrów
 const registyWrapper = document.querySelector('.registy-box-wrapper')
@@ -36,19 +37,29 @@ const fillingCells = () => {
 
 // Wprowadznie danych do komórek
 const inputToCell = () => {
-	const cellInputValue = cellInput.value
-	const cellInputName = cellName.value.toUpperCase()
-	cellArray.forEach(cell => {
-		if (cell.cellName === cellInputName) {
-			cell.cellValue = cellInputValue
-			console.log(cellArray)
+	if (cellInput.value.match(regEx)) {
+		cellInput.classList.remove('error-value')
+		const cellInputValue = cellInput.value
+		if (cellName.value.toUpperCase().match(regEx)) {
+			cellName.classList.remove('error-value')
+			const cellInputName = cellName.value.toUpperCase()
+			cellArray.forEach(cell => {
+				if (cell.cellName === cellInputName) {
+					cell.cellValue = cellInputValue.toUpperCase()
+					console.log(cellArray)
+				}
+			})
+		} else {
+			cellName.classList.add('error-value')
 		}
-	})
+	} else {
+		cellInput.classList.add('error-value')
+	}
 }
 
 // Nasłuchiwanie na wciśnięcie przysisku
-registyInputs.forEach(div => {
-	div.firstElementChild.addEventListener('keyup', pushToArray)
+registyInputs.forEach(rej => {
+	rej.firstElementChild.addEventListener('keyup', pushToArray)
 })
 
 cellInputBtn.addEventListener('click', inputToCell)
