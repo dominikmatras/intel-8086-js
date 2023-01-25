@@ -17,19 +17,43 @@
 		<div class="registry-box-container">
 			<h2 class="registry-heading">Rejestry procesora</h2>
 			<div class="registy-box-wrapper">
-				<label for="">AL: <input type="text" maxlength="2" minlength="2" data-index="1" class="registy-input" /></label>
-				<label for="">AH: <input type="text" maxlength="2" minlength="2" data-index="2" class="registy-input" /></label><br />
-				<label for="">BL: <input type="text" maxlength="2" minlength="2" data-index="3" class="registy-input" /></label>
-				<label for="">BH: <input type="text" maxlength="2" minlength="2" data-index="4" class="registy-input" /></label><br />
-				<label for="">CL: <input type="text" maxlength="2" minlength="2" data-index="5" class="registy-input" /></label>
-				<label for="">CH: <input type="text" maxlength="2" minlength="2" data-index="6" class="registy-input" /></label><br />
-				<label for="">DL: <input type="text" maxlength="2" minlength="2" data-index="7" class="registy-input" /></label>
-				<label for="">DH: <input type="text" maxlength="2" minlength="2" data-index="8" class="registy-input" /></label><br />
+				<div class="registy-input">
+					AL:
+					<input type="text" maxlength="2" minlength="2" data-index="1" />
+				</div>
+				<div class="registy-input">
+					AH:
+					<input type="text" maxlength="2" minlength="2" data-index="2" />
+				</div>
+				<div class="registy-input">
+					BL:
+					<input type="text" maxlength="2" minlength="2" data-index="3" />
+				</div>
+				<div class="registy-input">
+					BH:
+					<input type="text" maxlength="2" minlength="2" data-index="4" />
+				</div>
+				<div class="registy-input">
+					CL:
+					<input type="text" maxlength="2" minlength="2" data-index="5" />
+				</div>
+				<div class="registy-input">
+					CH:
+					<input type="text" maxlength="2" minlength="2" data-index="6" />
+				</div>
+				<div class="registy-input">
+					DL:
+					<input type="text" maxlength="2" minlength="2" data-index="7" />
+				</div>
+				<div class="registy-input">
+					DH:
+					<input type="text" maxlength="2" minlength="2" data-index="8" />
+				</div>
 			</div>
 
 			<h2 class="cell-heading">Komórki pamięci operacyjnej RAM</h2>
 			<div class="cells-box-wrapper">
-				<input type="text" maxlength="4" minlength="4" data-cell="1" class="cell-input" />
+				<input type="text" maxlength="4" minlength="4" data-cell="1" class="cell-input" placeholder="Podaj wartość komórki.." />
 				<select name="RAM" id="ramcells" class="cell-list">
 					<option value="none" selected>Wybierz komórkę pamięci RAM</option>
 				</select>
