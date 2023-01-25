@@ -10,58 +10,59 @@
 		<title>Intel 8086 Simulator</title>
 	</head>
 	<body>
-		<header>
+		<header class="heading-box">
 			<h1>Intel 8086</h1>
 		</header>
 
-		<div>
-			<h2>Rejestry procesora</h2>
-			<div>
-				<label for="">AL: <input type="text" maxlength="2" minlength="2" /></label>
-				<label for="">AH: <input type="text" maxlength="2" minlength="2" /></label><br />
-				<label for="">BL: <input type="text" maxlength="2" minlength="2" /></label>
-				<label for="">BH: <input type="text" maxlength="2" minlength="2" /></label><br />
-				<label for="">CL: <input type="text" maxlength="2" minlength="2" /></label>
-				<label for="">CH: <input type="text" maxlength="2" minlength="2" /></label><br />
-				<label for="">DL: <input type="text" maxlength="2" minlength="2" /></label>
-				<label for="">DH: <input type="text" maxlength="2" minlength="2" /></label><br />
+		<div class="registry-box-container">
+			<h2 class="registry-heading">Rejestry procesora</h2>
+			<div class="registy-box-wrapper">
+				<label for="">AL: <input type="text" maxlength="2" minlength="2" data-index="1" class="registy-input" /></label>
+				<label for="">AH: <input type="text" maxlength="2" minlength="2" data-index="2" class="registy-input" /></label><br />
+				<label for="">BL: <input type="text" maxlength="2" minlength="2" data-index="3" class="registy-input" /></label>
+				<label for="">BH: <input type="text" maxlength="2" minlength="2" data-index="4" class="registy-input" /></label><br />
+				<label for="">CL: <input type="text" maxlength="2" minlength="2" data-index="5" class="registy-input" /></label>
+				<label for="">CH: <input type="text" maxlength="2" minlength="2" data-index="6" class="registy-input" /></label><br />
+				<label for="">DL: <input type="text" maxlength="2" minlength="2" data-index="7" class="registy-input" /></label>
+				<label for="">DH: <input type="text" maxlength="2" minlength="2" data-index="8" class="registy-input" /></label><br />
 			</div>
-			<h2>Komórki pamięci operacyjnej RAM</h2>
-			<div>
-				<input type="text" maxlength="4" />
-				<select name="RAM" id="ramcells">
+
+			<h2 class="cell-heading">Komórki pamięci operacyjnej RAM</h2>
+			<div class="cells-box-wrapper">
+				<input type="text" maxlength="4" minlength="4" data-cell="1" class="cell-input" />
+				<select name="RAM" id="ramcells" class="cell-list">
 					<option value="none" selected>Wybierz komórkę pamięci RAM</option>
 				</select>
-				<button>Wprowadź</button>
+				<button class="cell-submit">Wprowadź</button>
 			</div>
 		</div>
 
-		<div>
-			<h2>Na jakich rejestrach/komórkach chcesz wykonać operację</h2>
-			<div>
+		<div class="operation-box-container">
+			<h2 class="select-operation-heading">Na jakich rejestrach/komórkach chcesz wykonać operację</h2>
+			<div class="select-operation-box-wrapper">
 				<button>Rejestr - Rejestr</button>
 				<button>Rejestr - Komórka RAM</button>
 				<button>Komórka RAM - Rejestr</button>
 				<button>Komórka RAM - Komórka RAM</button>
 			</div>
 
-			<h2>Operacja:</h2>
-			<div>
-				<button>MOV</button>
-				<button>XCHG</button>
-				<button>NOT</button>
-				<button>INC</button>
-				<button>DEC</button>
-				<button>AND</button>
-				<button>OR</button>
-				<button>XOR</button>
-				<button>ADD</button>
-				<button>SUB</button>
+			<h2 class="operation-heading">Operacja:</h2>
+			<div class="operation-box-wrapper">
+				<button class="movbtn">MOV</button>
+				<button class="xchgbtn">XCHG</button>
+				<button class="notbtn">NOT</button>
+				<button class="incbtn">INC</button>
+				<button class="decbtn">DEC</button>
+				<button class="andbtn">AND</button>
+				<button class="orbtn">OR</button>
+				<button class="xorbtn">XOR</button>
+				<button class="addbtn">ADD</button>
+				<button class="subbtn">SUB</button>
 			</div>
 
-			<div>
-				<div></div>
-				<button>Zatwierdź</button>
+			<div class="action-box-wrapper">
+				<div class="action-content"></div>
+				<button class="actionbtn">Zatwierdź</button>
 			</div>
 		</div>
 
