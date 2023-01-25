@@ -10,6 +10,61 @@
 		<title>Intel 8086 Simulator</title>
 	</head>
 	<body>
+		<header>
+			<h1>Intel 8086</h1>
+		</header>
+
+		<div>
+			<h2>Rejestry procesora</h2>
+			<div>
+				<label for="">AL: <input type="text" maxlength="2" minlength="2" /></label>
+				<label for="">AH: <input type="text" maxlength="2" minlength="2" /></label><br />
+				<label for="">BL: <input type="text" maxlength="2" minlength="2" /></label>
+				<label for="">BH: <input type="text" maxlength="2" minlength="2" /></label><br />
+				<label for="">CL: <input type="text" maxlength="2" minlength="2" /></label>
+				<label for="">CH: <input type="text" maxlength="2" minlength="2" /></label><br />
+				<label for="">DL: <input type="text" maxlength="2" minlength="2" /></label>
+				<label for="">DH: <input type="text" maxlength="2" minlength="2" /></label><br />
+			</div>
+			<h2>Komórki pamięci operacyjnej RAM</h2>
+			<div>
+				<input type="text" maxlength="4" />
+				<select name="RAM" id="ramcells">
+					<option value="none" selected>Wybierz komórkę pamięci RAM</option>
+				</select>
+				<button>Wprowadź</button>
+			</div>
+		</div>
+
+		<div>
+			<h2>Na jakich rejestrach/komórkach chcesz wykonać operację</h2>
+			<div>
+				<button>Rejestr - Rejestr</button>
+				<button>Rejestr - Komórka RAM</button>
+				<button>Komórka RAM - Rejestr</button>
+				<button>Komórka RAM - Komórka RAM</button>
+			</div>
+
+			<h2>Operacja:</h2>
+			<div>
+				<button>MOV</button>
+				<button>XCHG</button>
+				<button>NOT</button>
+				<button>INC</button>
+				<button>DEC</button>
+				<button>AND</button>
+				<button>OR</button>
+				<button>XOR</button>
+				<button>ADD</button>
+				<button>SUB</button>
+			</div>
+
+			<div>
+				<div></div>
+				<button>Zatwierdź</button>
+			</div>
+		</div>
+
 		<script src="javaScript/app.js"></script>
 	</body>
 </html>
