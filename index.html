@@ -57,35 +57,25 @@
 
 			<h2 class="cell-heading">Komórki pamięci operacyjnej RAM</h2>
 			<div class="cells-box-wrapper">
-				<input type="text" maxlength="4" minlength="4" data-cell="1" class="cell-input" placeholder="Podaj wartość..." />
-				<select name="RAM" id="ramcells" class="cell-list">
-					<option value="none" selected>Wybierz komórkę pamięci RAM</option>
-				</select>
+				<input type="text" maxlength="4" minlength="4" data-cell="1" class="cell-input cell-value" placeholder="Podaj wartość..." />
+				<input type="text" maxlength="4" minlength="4" data-cell="2" class="cell-input cell-name" placeholder="Podaj nazwę komórki..." />
 				<button class="cellbtn btn">Wprowadź</button>
 			</div>
 		</div>
 
 		<div class="operation-box-container">
-			<!-- <h2 class="select-operation-heading">Na jakich rejestrach/komórkach chcesz wykonać operację</h2>
-			<div class="select-operation-box-wrapper">
-				<button class="onlyregbtn btn">Rejestr - Rejestr</button>
-				<button class="regcelbtn btn">Rejestr - Komórka RAM</button>
-				<button class="celregbtn btn">Komórka RAM - Rejestr</button>
-				<button class="onlycelbtn btn">Komórka RAM - Komórka RAM</button>
-			</div> -->
-
 			<h2 class="operation-heading">Operacje</h2>
 			<div class="operation-box-wrapper">
-				<button class="movbtn btn">MOV</button>
-				<button class="xchgbtn btn">XCHG</button>
-				<button class="notbtn btn">NOT</button>
-				<button class="incbtn btn">INC</button>
-				<button class="decbtn btn">DEC</button>
-				<button class="andbtn btn">AND</button>
-				<button class="orbtn btn">OR</button>
-				<button class="xorbtn btn">XOR</button>
-				<button class="addbtn btn">ADD</button>
-				<button class="subbtn btn">SUB</button>
+				<button class="movbtn btn operationbtn">MOV</button>
+				<button class="xchgbtn btn operationbtn">XCHG</button>
+				<button class="notbtn btn operationbtn">NOT</button>
+				<button class="incbtn btn operationbtn">INC</button>
+				<button class="decbtn btn operationbtn">DEC</button>
+				<button class="andbtn btn operationbtn">AND</button>
+				<button class="orbtn btn operationbtn">OR</button>
+				<button class="xorbtn btn operationbtn">XOR</button>
+				<button class="addbtn btn operationbtn">ADD</button>
+				<button class="subbtn btn operationbtn">SUB</button>
 			</div>
 
 			<div class="action-box-wrapper action-hiden">
