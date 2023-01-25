@@ -112,25 +112,15 @@ body {
 	color: var(--light-green);
 }
 
-.cell-list {
-	width: 250px;
-	height: 50px;
-	background-color: rgba(0, 143, 140, 0.1);
-	border-radius: 5px;
-	margin-right: 20px;
-	margin-bottom: 20px;
-	padding: 5px 10px;
-	text-align: center;
-	font-size: 18px;
-	border: none;
-	border-bottom: 2px solid var(--green);
-	color: var(--light-green);
-}
-
 .cellbtn {
 	height: 50px;
 	border: none;
 	border-bottom: 2px solid var(--green);
+}
+
+.cells-box-wrapper p {
+	color: #909090;
+	font-size: 10px;
 }
 
 .operation-box-container {
