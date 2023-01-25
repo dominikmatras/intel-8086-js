@@ -12,6 +12,7 @@
 	--dark-green: #015958;
 	--green: #008f8c;
 	--light-green: #0caba8;
+	--red: tomato;
 }
 
 body {
@@ -141,4 +142,8 @@ body {
 
 .action-hiden {
 	display: none;
+}
+
+.error-value {
+	border: 2px solid var(--red);
 }
