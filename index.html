@@ -82,9 +82,30 @@
 				<button class="subbtn btn operationbtn">SUB</button>
 			</div>
 
-			<div class="action-box-wrapper action-hiden">
-				<div class="action-content"></div>
-				<button class="actionbtn btn">Zatwierdź</button>
+			<div class="action-box-wrapper">
+				<div class="multiply-operation action-hiden">
+					<p>Operacja: <span class="multiply-operation-name operation-name"></span></p>
+					<div class="action-cells cell1">
+						<input type="text" maxlength="4" minlength="2" cell-index="1" />
+						<button class="operation-multiply-btn11 btn-operation1">Rejesrty</button>
+						<button class="operation-multiply-btn21 btn-operation2">Komórki RAM</button>
+					</div>
+					<div class="action-cells cell2">
+						<input type="text" maxlength="4" minlength="2" cell-index="2" />
+						<button class="operation-multiply-btn12 btn-operation1">Rejesrty</button>
+						<button class="operation-multiply-btn22 btn-operation2">Komórki RAM</button>
+					</div>
+					<button class="multiply-submit btn">Wykonaj operacje</button>
+				</div>
+				<div class="single-operation action-hiden">
+					<p>Operacja: <span class="single-operation-name operation-name"></span></p>
+					<div class="action-cells">
+						<input type="text" maxlength="4" minlength="2" cell-index="3" />
+						<button class="operation-single-btn1 btn-operation1">Rejesrty</button>
+						<button class="operation-single-btn2 btn-operation2">Komórki RAM</button>
+					</div>
+					<button class="single-submit btn">Wykonaj operacje</button>
+				</div>
 			</div>
 		</div>
 
