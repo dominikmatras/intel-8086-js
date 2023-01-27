@@ -140,6 +140,25 @@ body {
 	margin: 0 20px 0 0;
 }
 
+.multiply-operation {
+	display: flex;
+}
+
+.multiply-operation input {
+	width: 200px;
+	height: 50px;
+	background-color: rgba(0, 143, 140, 0.1);
+	border-radius: 5px;
+	margin-right: 20px;
+	margin-bottom: 20px;
+	padding: 5px 10px;
+	text-align: center;
+	font-size: 18px;
+	border: none;
+	border-bottom: 2px solid var(--green);
+	color: var(--light-green);
+}
+
 .action-hiden {
 	display: none;
 }
