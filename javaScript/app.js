@@ -2,15 +2,15 @@
 let registyArray = []
 let cellArray = []
 let regEx = /^[0-9a-fA-F]+$/
-
 // Pobieranie rejestrów
 const registyWrapper = document.querySelector('.registy-box-wrapper')
 const registyInputs = document.querySelectorAll('.registy-input')
-
 // Pobieranie komórek RAM
 const cellInput = document.querySelector('.cell-value')
 const cellName = document.querySelector('.cell-name')
 const cellInputBtn = document.querySelector('.cellbtn')
+// Pobieranie przycisków operacyjnych
+const operationBtns = document.querySelectorAll('.operationbtn')
 
 // Funkcja wpisująca do tablicy wartości rejstrów
 const pushToArray = () => {
@@ -37,9 +37,11 @@ const fillingCells = () => {
 
 // Wprowadznie danych do komórek
 const inputToCell = () => {
+	// Sprawdzanie czy wartość jest wpisana poprawnie
 	if (cellInput.value.match(regEx)) {
 		cellInput.classList.remove('error-value')
 		const cellInputValue = cellInput.value
+		// Sprawdzanie czy nazwa komórki jest wpisana poprawnie
 		if (cellName.value.toUpperCase().match(regEx)) {
 			cellName.classList.remove('error-value')
 			const cellInputName = cellName.value.toUpperCase()
