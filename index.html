@@ -84,24 +84,26 @@
 
 			<div class="action-box-wrapper">
 				<div class="multiply-operation">
-					<p>Operacja: <span class="operation-name"></span></p>
-					<div class="action-cells cell1">
-						<input type="text" maxlength="4" minlength="2" cell-index="1" /><br />
-						<button class="operation-multiply-btn11 btn-operation1">Rejesrty</button>
-						<button class="operation-multiply-btn21 btn-operation2">Komórki RAM</button>
-					</div>
-					<div class="action-cells cell2">
-						<input type="text" maxlength="4" minlength="2" cell-index="2" /><br />
-						<button class="operation-multiply-btn12 btn-operation1">Rejesrty</button>
-						<button class="operation-multiply-btn22 btn-operation2">Komórki RAM</button>
+					<p><span class="operation-name"></span></p>
+					<div class="flex-operation">
+						<div class="action-cells cell1">
+							<input type="text" maxlength="4" minlength="2" cell-index="1" /><br />
+							<button class="btn-operation1 operation-btn-active">Rejesrty</button>
+							<button class="btn-operation1">Komórki RAM</button>
+						</div>
+						<div class="action-cells cell2">
+							<input type="text" maxlength="4" minlength="2" cell-index="2" /><br />
+							<button class="btn-operation2 operation-btn-active">Rejesrty</button>
+							<button class="btn-operation2">Komórki RAM</button>
+						</div>
 					</div>
 					<button class="multiply-submit btn">Wykonaj operacje</button>
 				</div>
 				<div class="single-operation action-hiden">
 					<div class="action-cells">
 						<input type="text" maxlength="4" minlength="2" cell-index="3" /><br />
-						<button class="operation-single-btn1 btn-operation1">Rejesrty</button>
-						<button class="operation-single-btn2 btn-operation2">Komórki RAM</button>
+						<button class="btn-operation3 operation-btn-active">Rejesrty</button>
+						<button class="btn-operation3">Komórki RAM</button>
 					</div>
 					<button class="single-submit btn">Wykonaj operacje</button>
 				</div>
