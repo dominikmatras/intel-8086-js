@@ -2,6 +2,10 @@
 let registyArray = []
 let cellArray = []
 let regEx = /^[0-9a-fA-F]+$/
+let operation
+let operationCell1 = 'rej',
+	operationCell2 = 'rej',
+	operationCell3 = 'rej'
 // Pobieranie rejestrów
 const registyWrapper = document.querySelector('.registy-box-wrapper')
 const registyInputs = document.querySelectorAll('.registy-input')
@@ -10,14 +14,21 @@ const cellInput = document.querySelector('.cell-value')
 const cellName = document.querySelector('.cell-name')
 const cellInputBtn = document.querySelector('.cellbtn')
 // Pobieranie przycisków operacyjnych
+const operationBtnsWrapper = document.querySelector('.operation-box-wrapper')
 const operationBtns = document.querySelectorAll('.operationbtn')
+// Pobieranie przycisków do wyboru komórek operacji
+const actionCell1 = document.querySelector('.operation-btn-wrapper1')
+const actionCellBtns1 = document.querySelectorAll('.btn-operation1')
+const actionCell2 = document.querySelector('.operation-btn-wrapper2')
+const actionCellBtns2 = document.querySelectorAll('.btn-operation2')
+const actionCell3 = document.querySelector('.operation-btn-wrapper3')
+const actionCellBtns3 = document.querySelectorAll('.btn-operation3')
 
 // Funkcja wpisująca do tablicy wartości rejstrów
 const pushToArray = () => {
 	for (let i = 0; i < 8; i++) {
 		registyArray[i] = registyInputs[i].firstElementChild.value
 	}
-	console.log(registyArray)
 }
 
 // Tworzenie komórek RAM
@@ -48,7 +59,6 @@ const inputToCell = () => {
 			cellArray.forEach(cell => {
 				if (cell.cellName === cellInputName) {
 					cell.cellValue = cellInputValue.toUpperCase()
-					console.log(cellArray)
 				}
 			})
 		} else {
@@ -59,11 +69,52 @@ const inputToCell = () => {
 	}
 }
 
-// Nasłuchiwanie na wciśnięcie przysisku
+// Wybór na jakich komórkach ma wykonać się operacja
+const actionCellChoice = e => {
+	let next = e.target.nextElementSibling // Jeżeli nie ma to NULL
+	let prev = e.target.previousElementSibling // Jeżeli nie ma to NULL
+
+	if (!e.target.classList.contains('operation-btn-active')) {
+		if (next == null) {
+			prev.classList.remove('operation-btn-active')
+		} else {
+			next.classList.remove('operation-btn-active')
+		}
+		e.target.classList.add('operation-btn-active')
+		if (e.target.classList.contains('btn-operation1')) {
+			operationCell1 = e.target.attributes.operation.textContent
+		} else if (e.target.classList.contains('btn-operation2')) {
+			operationCell2 = e.target.attributes.operation.textContent
+		} else {
+			operationCell3 = e.target.attributes.operation.textContent
+		}
+	}
+}
+
+// Nasłuchiwania
+
+// Wpisywanie do tablicy 'registyArray'
 registyInputs.forEach(rej => {
 	rej.firstElementChild.addEventListener('keyup', pushToArray)
 })
 
+// Wybór operacji
+operationBtnsWrapper.addEventListener('click', e => {
+	operationBtns.forEach(btn => btn.classList.remove('btn-active'))
+	if (e.target.nodeName == 'BUTTON') {
+		operation = e.target.textContent
+		console.log(operation)
+		e.target.classList.add('btn-active')
+	}
+})
+
+// Wybór na jakich komórkach ma wykonać się operacja - nasłuchiwanie
+actionCell1.addEventListener('click', e => actionCellChoice(e))
+actionCell2.addEventListener('click', e => actionCellChoice(e))
+actionCell3.addEventListener('click', e => actionCellChoice(e))
+
+// Wpisywanie do tablicy 'cellArray'
 cellInputBtn.addEventListener('click', inputToCell)
 
+// Wypełnianie zerami (0) komórek RAM
 fillingCells()
