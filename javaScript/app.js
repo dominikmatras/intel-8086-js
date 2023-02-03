@@ -33,7 +33,7 @@ const pushToArray = () => {
 
 // Tworzenie komórek RAM
 const fillingCells = () => {
-	for (let i = 0; i < 65536; i++) {
+	for (let i = 1; i <= 65536; i++) {
 		let cellName = i.toString(16).toUpperCase()
 		while (cellName.length < 4) {
 			cellName += '0'
@@ -51,10 +51,13 @@ const inputToCell = () => {
 	// Sprawdzanie czy wartość jest wpisana poprawnie
 	if (cellInput.value.match(regEx)) {
 		cellInput.classList.remove('error-value')
-		const cellInputValue = cellInput.value
+		let cellInputValue = cellInput.value
 		// Sprawdzanie czy nazwa komórki jest wpisana poprawnie
 		if (cellName.value.toUpperCase().match(regEx)) {
 			cellName.classList.remove('error-value')
+			while (cellInputValue.length < 4) {
+				cellInputValue += '0'
+			}
 			const cellInputName = cellName.value.toUpperCase()
 			cellArray.forEach(cell => {
 				if (cell.cellName === cellInputName) {
