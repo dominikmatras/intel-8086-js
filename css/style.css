@@ -200,3 +200,10 @@ body {
 .error-value {
 	border: 2px solid var(--red);
 }
+
+footer {
+	position: fixed;
+	left: 50%;
+	transform: translateX(-50%);
+	bottom: 30px;
+}

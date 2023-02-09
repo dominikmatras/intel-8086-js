@@ -132,6 +132,7 @@ const actionCellChoice = e => {
 	}
 }
 
+// Wybor operacji oraz wywołanie walidatora wprowadzonych danych do rejestru, bez ich wypełnenia program nie przejdzie dalej
 const operationChoice = () => {
 	if (!validateRegistry()) {
 		alert('Rejejst nie został wypełniony poprawnie!')
@@ -158,6 +159,7 @@ const operationChoice = () => {
 
 // Operacje na pojedyńczej komórce rejststru/RAM
 const operationSingle = () => {
+	// Pobieranie wartości oraz deklaracja pomocniczych zmiennych
 	let outputValue
 	let decimalValue
 	let nameOfCell = inputOperation3.value.toUpperCase()
@@ -169,6 +171,7 @@ const operationSingle = () => {
 			alert('Zła nazwa resjetru!')
 		} else {
 			switch (operation) {
+				// Operacja NOT dla rejestru
 				case 'NOT':
 					decimalValue = parseInt(inputValue, 16)
 					decimalValue = ~decimalValue
@@ -179,6 +182,7 @@ const operationSingle = () => {
 					inputCellNOT.value = outputValue
 					break
 				case 'INC':
+					// Operacja INC dla rejestru
 					decimalValue = parseInt(inputValue, 16)
 					decimalValue += 1
 					outputValue = decimalValue.toString(16).toUpperCase()
@@ -188,6 +192,7 @@ const operationSingle = () => {
 					inputCellINC.value = outputValue
 					break
 				case 'DEC':
+					// Operacja DEC dla rejestru
 					decimalValue = parseInt(inputValue, 16)
 					decimalValue -= 1
 					outputValue = decimalValue.toString(16).toUpperCase()
@@ -202,6 +207,7 @@ const operationSingle = () => {
 			let indexCell = cellArray.findIndex(el => el.cellName == nameOfCell)
 			let inputValue = cellArray[indexCell].cellValue
 			switch (operation) {
+				// Operacja NOT dla RAM
 				case 'NOT':
 					decimalValue = parseInt(inputValue, 16)
 					console.log(decimalValue)
@@ -211,6 +217,7 @@ const operationSingle = () => {
 					cellArray[indexCell].cellValue = outputValue
 					break
 				case 'INC':
+					// Operacja INC dla RAM
 					decimalValue = parseInt(inputValue, 16)
 					decimalValue += 1
 					outputValue = decimalValue.toString(16).toUpperCase()
@@ -218,6 +225,7 @@ const operationSingle = () => {
 					cellArray[indexCell].cellValue = outputValue
 					break
 				case 'DEC':
+					// Operacja DEC dla RAM
 					decimalValue = parseInt(inputValue, 16)
 					decimalValue -= 1
 					outputValue = decimalValue.toString(16).toUpperCase()
@@ -231,14 +239,18 @@ const operationSingle = () => {
 	}
 }
 
+// Operacje na dwóch komórkach resjestru/RAM'u
 const multipleOperation = () => {
+	// Pobieranie nazwy oraz deklaracja pomocniczych zmiennych
 	let firstNameOfCell = inputOperation1.value.toUpperCase()
 	let firstIndexCell, firstInputValue, firstDecimalValue, firstIsRej
 	let secondNameOfCell = inputOperation2.value.toUpperCase()
 	let secondIndexCell, secondInputValue, secondDecimalValue, secondIsRej
 	let outputValue
 
+	// Pobieranie wartości z pierwszego inputa
 	if (actionCellBtns1[0].classList.contains('operation-btn-active')) {
+		// Rejestr
 		firstIndexCell = registryNameArray.indexOf(firstNameOfCell)
 		firstInputValue = registyArray[firstIndexCell]
 		if (firstInputValue == undefined) {
@@ -246,6 +258,7 @@ const multipleOperation = () => {
 		}
 		firstIsRej = true
 	} else {
+		// RAM
 		if (firstNameOfCell.match(regEx)) {
 			firstIndexCell = cellArray.findIndex(el => el.cellName == firstNameOfCell)
 			firstInputValue = cellArray[firstIndexCell].cellValue
@@ -255,7 +268,9 @@ const multipleOperation = () => {
 		}
 	}
 
+	// Pobieranie wartości z drugiego inputa
 	if (actionCellBtns2[0].classList.contains('operation-btn-active')) {
+		// Rejestr
 		secondIndexCell = registryNameArray.indexOf(secondNameOfCell)
 		secondInputValue = registyArray[secondIndexCell]
 		if (secondInputValue == undefined) {
@@ -263,6 +278,7 @@ const multipleOperation = () => {
 		}
 		secondIsRej = true
 	} else {
+		// RAM
 		if (secondNameOfCell.match(regEx)) {
 			secondIndexCell = cellArray.findIndex(el => el.cellName == secondNameOfCell)
 			secondInputValue = cellArray[secondIndexCell].cellValue
@@ -273,6 +289,7 @@ const multipleOperation = () => {
 	}
 
 	switch (operation) {
+		// Operacja MOV
 		case 'MOV':
 			secondInputValue = firstInputValue
 			if (secondIsRej) {
@@ -286,6 +303,7 @@ const multipleOperation = () => {
 			}
 			break
 		case 'XCHG':
+			// Operacja XCHG
 			let temp = firstInputValue
 			firstInputValue = secondInputValue
 			secondInputValue = temp
@@ -304,6 +322,7 @@ const multipleOperation = () => {
 			}
 			break
 		case 'AND':
+			// Operacja AND
 			firstDecimalValue = parseInt(firstInputValue, 16)
 			secondDecimalValue = parseInt(secondInputValue, 16)
 			firstDecimalValue = firstDecimalValue & secondDecimalValue
@@ -319,6 +338,7 @@ const multipleOperation = () => {
 			}
 			break
 		case 'OR':
+			// Operacja OR
 			firstDecimalValue = parseInt(firstInputValue, 16)
 			secondDecimalValue = parseInt(secondInputValue, 16)
 			firstDecimalValue = firstDecimalValue | secondDecimalValue
@@ -334,48 +354,51 @@ const multipleOperation = () => {
 			}
 			break
 		case 'XOR':
+			// Operacja XOR
 			firstDecimalValue = parseInt(firstInputValue, 16)
 			secondDecimalValue = parseInt(secondInputValue, 16)
 			firstDecimalValue = firstDecimalValue ^ secondDecimalValue
 			outputValue = firstDecimalValue.toString(16).toUpperCase()
 			if (firstIsRej) {
 				registyArray[firstIndexCell] = outputValue
-				alert(`Wartość komórki ${firstNameOfCell} po operacji AND uległa zmianie na: ${outputValue}`)
+				alert(`Wartość komórki ${firstNameOfCell} po operacji XOR uległa zmianie na: ${outputValue}`)
 				const InputCellAND = document.querySelector(`[data-index="${firstIndexCell}"]`)
 				InputCellAND.value = outputValue
 			} else {
 				cellArray[firstIndexCell].cellValue = outputValue
-				alert(`Wartość komórki ${firstNameOfCell} po operacji AND uległa zmianie na: ${outputValue}`)
+				alert(`Wartość komórki ${firstNameOfCell} po operacji XOR uległa zmianie na: ${outputValue}`)
 			}
 			break
 		case 'ADD':
+			// Operacja ADD
 			firstDecimalValue = parseInt(firstInputValue, 16)
 			secondDecimalValue = parseInt(secondInputValue, 16)
 			firstDecimalValue = firstDecimalValue + secondDecimalValue
 			outputValue = firstDecimalValue.toString(16).toUpperCase()
 			if (firstIsRej) {
 				registyArray[firstIndexCell] = outputValue
-				alert(`Wartość komórki ${firstNameOfCell} po operacji AND uległa zmianie na: ${outputValue}`)
+				alert(`Wartość komórki ${firstNameOfCell} po operacji ADD uległa zmianie na: ${outputValue}`)
 				const InputCellAND = document.querySelector(`[data-index="${firstIndexCell}"]`)
 				InputCellAND.value = outputValue
 			} else {
 				cellArray[firstIndexCell].cellValue = outputValue
-				alert(`Wartość komórki ${firstNameOfCell} po operacji AND uległa zmianie na: ${outputValue}`)
+				alert(`Wartość komórki ${firstNameOfCell} po operacji ADD uległa zmianie na: ${outputValue}`)
 			}
 			break
 		case 'SUB':
+			// Operacja SUB
 			firstDecimalValue = parseInt(firstInputValue, 16)
 			secondDecimalValue = parseInt(secondInputValue, 16)
 			firstDecimalValue = firstDecimalValue - secondDecimalValue
 			outputValue = firstDecimalValue.toString(16).toUpperCase()
 			if (firstIsRej) {
 				registyArray[firstIndexCell] = outputValue
-				alert(`Wartość komórki ${firstNameOfCell} po operacji AND uległa zmianie na: ${outputValue}`)
+				alert(`Wartość komórki ${firstNameOfCell} po operacji SUB uległa zmianie na: ${outputValue}`)
 				const InputCellAND = document.querySelector(`[data-index="${firstIndexCell}"]`)
 				InputCellAND.value = outputValue
 			} else {
 				cellArray[firstIndexCell].cellValue = outputValue
-				alert(`Wartość komórki ${firstNameOfCell} po operacji AND uległa zmianie na: ${outputValue}`)
+				alert(`Wartość komórki ${firstNameOfCell} po operacji SUB uległa zmianie na: ${outputValue}`)
 			}
 			break
 	}
@@ -406,15 +429,9 @@ actionCell3.addEventListener('click', e => actionCellChoice(e))
 // Wpisywanie do tablicy 'cellArray'
 cellInputBtn.addEventListener('click', inputToCell)
 
+// Uruchomienie programu
 actionSingleSubmit.addEventListener('click', operationSingle)
 actionMultiSubmit.addEventListener('click', multipleOperation)
 
 // Wypełnianie zerami (0) komórek RAM
 fillingCells()
-
-// let number = 10011101
-// let hex = parseInt(number, 2)
-// hex += 1
-// console.log(hex)
-// hex = hex.toString(16)
-// console.log(hex)
