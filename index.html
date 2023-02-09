@@ -23,35 +23,35 @@
 			<div class="registy-box-wrapper">
 				<div class="registy-input">
 					AL:
-					<input type="text" maxlength="2" minlength="2" data-index="1" />
+					<input type="text" maxlength="2" minlength="2" data-index="0" />
 				</div>
 				<div class="registy-input">
 					AH:
-					<input type="text" maxlength="2" minlength="2" data-index="2" />
+					<input type="text" maxlength="2" minlength="2" data-index="1" />
 				</div>
 				<div class="registy-input">
 					BL:
-					<input type="text" maxlength="2" minlength="2" data-index="3" />
+					<input type="text" maxlength="2" minlength="2" data-index="2" />
 				</div>
 				<div class="registy-input">
 					BH:
-					<input type="text" maxlength="2" minlength="2" data-index="4" />
+					<input type="text" maxlength="2" minlength="2" data-index="3" />
 				</div>
 				<div class="registy-input">
 					CL:
-					<input type="text" maxlength="2" minlength="2" data-index="5" />
+					<input type="text" maxlength="2" minlength="2" data-index="4" />
 				</div>
 				<div class="registy-input">
 					CH:
-					<input type="text" maxlength="2" minlength="2" data-index="6" />
+					<input type="text" maxlength="2" minlength="2" data-index="5" />
 				</div>
 				<div class="registy-input">
 					DL:
-					<input type="text" maxlength="2" minlength="2" data-index="7" />
+					<input type="text" maxlength="2" minlength="2" data-index="6" />
 				</div>
 				<div class="registy-input">
 					DH:
-					<input type="text" maxlength="2" minlength="2" data-index="8" />
+					<input type="text" maxlength="2" minlength="2" data-index="7" />
 				</div>
 			</div>
 
@@ -83,18 +83,18 @@
 			</div>
 
 			<div class="action-box-wrapper">
+				<p class="operation-name"></p>
 				<div class="multiply-operation">
-					<p><span class="operation-name"></span></p>
 					<div class="flex-operation">
 						<div class="action-cells cell1">
-							<input type="text" maxlength="4" minlength="2" cell-index="1" /><br />
+							<input type="text" class="input-operation1" maxlength="4" minlength="2" cell-index="1" /><br />
 							<div class="operation-btn-wrapper1">
 								<button operation="rej" class="btn-operation1 operation-btn-active">Rejesrty</button>
 								<button operation="cel" class="btn-operation1">Komórki RAM</button>
 							</div>
 						</div>
 						<div class="action-cells cell2">
-							<input type="text" maxlength="4" minlength="2" cell-index="2" /><br />
+							<input type="text" class="input-operation2" maxlength="4" minlength="2" cell-index="2" /><br />
 							<div class="operation-btn-wrapper2">
 								<button operation="rej" class="btn-operation2 operation-btn-active">Rejesrty</button>
 								<button operation="cel" class="btn-operation2">Komórki RAM</button>
@@ -104,14 +104,16 @@
 					<button class="multiply-submit btn">Wykonaj operacje</button>
 				</div>
 				<div class="single-operation action-hiden">
-					<div class="action-cells">
-						<input type="text" maxlength="4" minlength="2" cell-index="3" /><br />
-						<div class="operation-btn-wrapper3">
-							<button operation="rej" class="btn-operation3 operation-btn-active">Rejesrty</button>
-							<button operation="cel" class="btn-operation3">Komórki RAM</button>
+					<div class="flex-operation">
+						<div class="action-cells">
+							<input type="text" class="input-operation3" maxlength="4" minlength="2" cell-index="3" /><br />
+							<div class="operation-btn-wrapper3">
+								<button operation="rej" class="btn-operation3 operation-btn-active">Rejesrty</button>
+								<button operation="cel" class="btn-operation3">Komórki RAM</button>
+							</div>
 						</div>
+						<button class="single-submit btn">Wykonaj operacje</button>
 					</div>
-					<button class="single-submit btn">Wykonaj operacje</button>
 				</div>
 			</div>
 		</div>
