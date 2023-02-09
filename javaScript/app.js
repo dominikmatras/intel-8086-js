@@ -1,6 +1,6 @@
 // Zmienne globalne
 let registyArray = []
-const registryNameArray = ['AL', 'AH', 'BL', 'BH', 'CL', 'CH', 'DL', 'DH']
+const registryNameArray = ['AH', 'AL', 'BH', 'BL', 'CH', 'CL', 'DH', 'DL']
 let cellArray = []
 let regEx = /^[0-9a-fA-F]+$/
 let operation = ''
@@ -99,6 +99,7 @@ const inputToCell = () => {
 			cellArray.forEach(cell => {
 				if (cell.cellName === cellInputName) {
 					cell.cellValue = cellInputValue.toUpperCase()
+					alert('Wprowadzono!')
 				}
 			})
 		} else {
@@ -155,6 +156,7 @@ const operationChoice = () => {
 	}
 }
 
+// Operacje na pojedyńczej komórce rejststru/RAM
 const operationSingle = () => {
 	let outputValue
 	let decimalValue
@@ -196,7 +198,186 @@ const operationSingle = () => {
 			}
 		}
 	} else {
-		// Jezeli RAM!
+		if (nameOfCell.match(regEx)) {
+			let indexCell = cellArray.findIndex(el => el.cellName == nameOfCell)
+			let inputValue = cellArray[indexCell].cellValue
+			switch (operation) {
+				case 'NOT':
+					decimalValue = parseInt(inputValue, 16)
+					console.log(decimalValue)
+					decimalValue = ~decimalValue
+					outputValue = decimalValue.toString(16).toUpperCase()
+					alert(`Wartość komórki RAM [${nameOfCell}] po operacji NOT uległa zmianie na: ${outputValue}`)
+					cellArray[indexCell].cellValue = outputValue
+					break
+				case 'INC':
+					decimalValue = parseInt(inputValue, 16)
+					decimalValue += 1
+					outputValue = decimalValue.toString(16).toUpperCase()
+					alert(`Wartość komórki RAM ${nameOfCell} po operacji INC uległa zmianie na: ${outputValue}`)
+					cellArray[indexCell].cellValue = outputValue
+					break
+				case 'DEC':
+					decimalValue = parseInt(inputValue, 16)
+					decimalValue -= 1
+					outputValue = decimalValue.toString(16).toUpperCase()
+					alert(`Wartość komórki RAM ${nameOfCell} po operacji DEC uległa zmianie na: ${outputValue}`)
+					cellArray[indexCell].cellValue = outputValue
+					break
+			}
+		} else {
+			alert('Zła nazwa komórki RAM!')
+		}
+	}
+}
+
+const multipleOperation = () => {
+	let firstNameOfCell = inputOperation1.value.toUpperCase()
+	let firstIndexCell, firstInputValue, firstDecimalValue, firstIsRej
+	let secondNameOfCell = inputOperation2.value.toUpperCase()
+	let secondIndexCell, secondInputValue, secondDecimalValue, secondIsRej
+	let outputValue
+
+	if (actionCellBtns1[0].classList.contains('operation-btn-active')) {
+		firstIndexCell = registryNameArray.indexOf(firstNameOfCell)
+		firstInputValue = registyArray[firstIndexCell]
+		if (firstInputValue == undefined) {
+			alert('Zła nazwa resjetru! (Pierwsza komórka)')
+		}
+		firstIsRej = true
+	} else {
+		if (firstNameOfCell.match(regEx)) {
+			firstIndexCell = cellArray.findIndex(el => el.cellName == firstNameOfCell)
+			firstInputValue = cellArray[firstIndexCell].cellValue
+			firstIsRej = false
+		} else {
+			alert('Zła nazwa komórki RAM! (Pierwsza komórka)')
+		}
+	}
+
+	if (actionCellBtns2[0].classList.contains('operation-btn-active')) {
+		secondIndexCell = registryNameArray.indexOf(secondNameOfCell)
+		secondInputValue = registyArray[secondIndexCell]
+		if (secondInputValue == undefined) {
+			alert('Zła nazwa resjetru! (Druga komórka)')
+		}
+		secondIsRej = true
+	} else {
+		if (secondNameOfCell.match(regEx)) {
+			secondIndexCell = cellArray.findIndex(el => el.cellName == secondNameOfCell)
+			secondInputValue = cellArray[secondIndexCell].cellValue
+			secondIsRej = false
+		} else {
+			alert('Zła nazwa komórki RAM! (Druga komórka)')
+		}
+	}
+
+	switch (operation) {
+		case 'MOV':
+			secondInputValue = firstInputValue
+			if (secondIsRej) {
+				registyArray[secondIndexCell] = secondInputValue
+				alert(`Wartość komórki ${secondNameOfCell} po operacji MOV uległa zmianie na: ${secondInputValue}`)
+				const inputCellMOV = document.querySelector(`[data-index="${secondIndexCell}"]`)
+				inputCellMOV.value = secondInputValue
+			} else {
+				cellArray[secondIndexCell].cellValue = secondInputValue
+				alert(`Wartość komórki ${secondNameOfCell} po operacji MOV uległa zmianie na: ${secondInputValue}`)
+			}
+			break
+		case 'XCHG':
+			let temp = firstInputValue
+			firstInputValue = secondInputValue
+			secondInputValue = temp
+			if (secondIsRej) {
+				registyArray[firstIndexCell] = firstInputValue
+				registyArray[secondIndexCell] = secondInputValue
+				alert(`Wartość komórki ${firstNameOfCell} po operacji XCHG uległa zmianie na: ${firstInputValue}, a wartość komórki ${secondNameOfCell} na ${secondInputValue}`)
+				const firstInputCellXCHG = document.querySelector(`[data-index="${firstIndexCell}"]`)
+				firstInputCellXCHG.value = firstInputValue
+				const secondInputCellXCHG = document.querySelector(`[data-index="${secondIndexCell}"]`)
+				secondInputCellXCHG.value = secondInputValue
+			} else {
+				cellArray[firstIndexCell].cellValue = firstInputValue
+				cellArray[secondIndexCell].cellValue = secondInputValue
+				alert(`Wartość komórki ${firstNameOfCell} po operacji XCHG uległa zmianie na: ${firstInputValue}, a wartość komórki ${secondNameOfCell} na ${secondInputValue}`)
+			}
+			break
+		case 'AND':
+			firstDecimalValue = parseInt(firstInputValue, 16)
+			secondDecimalValue = parseInt(secondInputValue, 16)
+			firstDecimalValue = firstDecimalValue & secondDecimalValue
+			outputValue = firstDecimalValue.toString(16).toUpperCase()
+			if (firstIsRej) {
+				registyArray[firstIndexCell] = outputValue
+				alert(`Wartość komórki ${firstNameOfCell} po operacji AND uległa zmianie na: ${outputValue}`)
+				const InputCellAND = document.querySelector(`[data-index="${firstIndexCell}"]`)
+				InputCellAND.value = outputValue
+			} else {
+				cellArray[firstIndexCell].cellValue = outputValue
+				alert(`Wartość komórki ${firstNameOfCell} po operacji AND uległa zmianie na: ${outputValue}`)
+			}
+			break
+		case 'OR':
+			firstDecimalValue = parseInt(firstInputValue, 16)
+			secondDecimalValue = parseInt(secondInputValue, 16)
+			firstDecimalValue = firstDecimalValue | secondDecimalValue
+			outputValue = firstDecimalValue.toString(16).toUpperCase()
+			if (firstIsRej) {
+				registyArray[firstIndexCell] = outputValue
+				alert(`Wartość komórki ${firstNameOfCell} po operacji OR uległa zmianie na: ${outputValue}`)
+				const InputCellOR = document.querySelector(`[data-index="${firstIndexCell}"]`)
+				InputCellOR.value = outputValue
+			} else {
+				cellArray[firstIndexCell].cellValue = outputValue
+				alert(`Wartość komórki ${firstNameOfCell} po operacji OR uległa zmianie na: ${outputValue}`)
+			}
+			break
+		case 'XOR':
+			firstDecimalValue = parseInt(firstInputValue, 16)
+			secondDecimalValue = parseInt(secondInputValue, 16)
+			firstDecimalValue = firstDecimalValue ^ secondDecimalValue
+			outputValue = firstDecimalValue.toString(16).toUpperCase()
+			if (firstIsRej) {
+				registyArray[firstIndexCell] = outputValue
+				alert(`Wartość komórki ${firstNameOfCell} po operacji AND uległa zmianie na: ${outputValue}`)
+				const InputCellAND = document.querySelector(`[data-index="${firstIndexCell}"]`)
+				InputCellAND.value = outputValue
+			} else {
+				cellArray[firstIndexCell].cellValue = outputValue
+				alert(`Wartość komórki ${firstNameOfCell} po operacji AND uległa zmianie na: ${outputValue}`)
+			}
+			break
+		case 'ADD':
+			firstDecimalValue = parseInt(firstInputValue, 16)
+			secondDecimalValue = parseInt(secondInputValue, 16)
+			firstDecimalValue = firstDecimalValue + secondDecimalValue
+			outputValue = firstDecimalValue.toString(16).toUpperCase()
+			if (firstIsRej) {
+				registyArray[firstIndexCell] = outputValue
+				alert(`Wartość komórki ${firstNameOfCell} po operacji AND uległa zmianie na: ${outputValue}`)
+				const InputCellAND = document.querySelector(`[data-index="${firstIndexCell}"]`)
+				InputCellAND.value = outputValue
+			} else {
+				cellArray[firstIndexCell].cellValue = outputValue
+				alert(`Wartość komórki ${firstNameOfCell} po operacji AND uległa zmianie na: ${outputValue}`)
+			}
+			break
+		case 'SUB':
+			firstDecimalValue = parseInt(firstInputValue, 16)
+			secondDecimalValue = parseInt(secondInputValue, 16)
+			firstDecimalValue = firstDecimalValue - secondDecimalValue
+			outputValue = firstDecimalValue.toString(16).toUpperCase()
+			if (firstIsRej) {
+				registyArray[firstIndexCell] = outputValue
+				alert(`Wartość komórki ${firstNameOfCell} po operacji AND uległa zmianie na: ${outputValue}`)
+				const InputCellAND = document.querySelector(`[data-index="${firstIndexCell}"]`)
+				InputCellAND.value = outputValue
+			} else {
+				cellArray[firstIndexCell].cellValue = outputValue
+				alert(`Wartość komórki ${firstNameOfCell} po operacji AND uległa zmianie na: ${outputValue}`)
+			}
+			break
 	}
 }
 
@@ -226,6 +407,7 @@ actionCell3.addEventListener('click', e => actionCellChoice(e))
 cellInputBtn.addEventListener('click', inputToCell)
 
 actionSingleSubmit.addEventListener('click', operationSingle)
+actionMultiSubmit.addEventListener('click', multipleOperation)
 
 // Wypełnianie zerami (0) komórek RAM
 fillingCells()
