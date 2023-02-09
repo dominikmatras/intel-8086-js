@@ -404,8 +404,6 @@ const multipleOperation = () => {
 	}
 }
 
-// Nasłuchiwania
-
 // Wpisywanie do tablicy 'registyArray'
 registyInputs.forEach(rej => {
 	rej.firstElementChild.addEventListener('keyup', pushToArray)
